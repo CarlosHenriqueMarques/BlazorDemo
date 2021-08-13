@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.Server", "Server\RentCar.Server.csproj", "{98CE3C2A-AF2C-42D8-8AC9-E973D29C513C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Server", "Server\RentCar.Server.csproj", "{98CE3C2A-AF2C-42D8-8AC9-E973D29C513C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.Client", "Client\RentCar.Client.csproj", "{D187EA7F-4234-4D2A-8F6F-18E9E83161DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Client", "Client\RentCar.Client.csproj", "{D187EA7F-4234-4D2A-8F6F-18E9E83161DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.Shared", "Shared\RentCar.Shared.csproj", "{BFED710F-A174-49C0-96C2-EF21138DEC7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Shared", "Shared\RentCar.Shared.csproj", "{BFED710F-A174-49C0-96C2-EF21138DEC7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
