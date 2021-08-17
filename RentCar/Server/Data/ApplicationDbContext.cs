@@ -2,12 +2,10 @@
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using RentCar.Server.Configurations.Entities;
 using RentCar.Server.Models;
 using RentCar.Shared.Domain;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RentCar.Server.Data
 {
@@ -24,5 +22,14 @@ namespace RentCar.Server.Data
         public DbSet<Model> Models { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Booking> Booking { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new ColourSeedConfiguration());
+            builder.ApplyConfiguration(new MakeSeedConfiguration());
+            builder.ApplyConfiguration(new ModelSeedConfiguration());
+        }
+
     }
 }

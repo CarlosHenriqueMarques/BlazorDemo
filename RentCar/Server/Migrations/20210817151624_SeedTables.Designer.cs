@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentCar.Server.Data;
 
-namespace RentCar.Server.Data.Migrations
+namespace RentCar.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210817151624_SeedTables")]
+    partial class SeedTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -330,8 +332,10 @@ namespace RentCar.Server.Data.Migrations
 
             modelBuilder.Entity("RentCar.Shared.Domain.Booking", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CostumerId")
                         .HasColumnType("int");
@@ -339,8 +343,8 @@ namespace RentCar.Server.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CustomerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -360,22 +364,21 @@ namespace RentCar.Server.Data.Migrations
                     b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("VehicleId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("VehicleId1");
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("Booking");
                 });
 
             modelBuilder.Entity("RentCar.Shared.Domain.Colour", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -395,12 +398,34 @@ namespace RentCar.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colours");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2021, 8, 17, 11, 16, 23, 338, DateTimeKind.Local).AddTicks(1663),
+                            DateUpdated = new DateTime(2021, 8, 17, 11, 16, 23, 344, DateTimeKind.Local).AddTicks(6324),
+                            Name = "Black",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2021, 8, 17, 11, 16, 23, 344, DateTimeKind.Local).AddTicks(7743),
+                            DateUpdated = new DateTime(2021, 8, 17, 11, 16, 23, 344, DateTimeKind.Local).AddTicks(7757),
+                            Name = "Blue",
+                            UpdatedBy = "System"
+                        });
                 });
 
             modelBuilder.Entity("RentCar.Shared.Domain.Customer", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -433,8 +458,10 @@ namespace RentCar.Server.Data.Migrations
 
             modelBuilder.Entity("RentCar.Shared.Domain.Make", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -454,12 +481,34 @@ namespace RentCar.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Makes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2021, 8, 17, 11, 16, 23, 346, DateTimeKind.Local).AddTicks(7092),
+                            DateUpdated = new DateTime(2021, 8, 17, 11, 16, 23, 346, DateTimeKind.Local).AddTicks(7181),
+                            Name = "Toyota",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2021, 8, 17, 11, 16, 23, 346, DateTimeKind.Local).AddTicks(7693),
+                            DateUpdated = new DateTime(2021, 8, 17, 11, 16, 23, 346, DateTimeKind.Local).AddTicks(7705),
+                            Name = "Hyundai",
+                            UpdatedBy = "System"
+                        });
                 });
 
             modelBuilder.Entity("RentCar.Shared.Domain.Model", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -479,18 +528,37 @@ namespace RentCar.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Models");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2021, 8, 17, 11, 16, 23, 347, DateTimeKind.Local).AddTicks(2191),
+                            DateUpdated = new DateTime(2021, 8, 17, 11, 16, 23, 347, DateTimeKind.Local).AddTicks(2214),
+                            Name = "Toyota",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2021, 8, 17, 11, 16, 23, 347, DateTimeKind.Local).AddTicks(2732),
+                            DateUpdated = new DateTime(2021, 8, 17, 11, 16, 23, 347, DateTimeKind.Local).AddTicks(2744),
+                            Name = "Hyundai",
+                            UpdatedBy = "System"
+                        });
                 });
 
             modelBuilder.Entity("RentCar.Shared.Domain.Vehicle", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ColourId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ColourId1")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -507,14 +575,8 @@ namespace RentCar.Server.Data.Migrations
                     b.Property<int>("MakeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("MakeId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("ModelId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ModelId1")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("RentalRate")
                         .HasColumnType("float");
@@ -530,11 +592,11 @@ namespace RentCar.Server.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ColourId1");
+                    b.HasIndex("ColourId");
 
-                    b.HasIndex("MakeId1");
+                    b.HasIndex("MakeId");
 
-                    b.HasIndex("ModelId1");
+                    b.HasIndex("ModelId");
 
                     b.ToTable("Vehicles");
                 });
@@ -598,7 +660,9 @@ namespace RentCar.Server.Data.Migrations
 
                     b.HasOne("RentCar.Shared.Domain.Vehicle", "Vehicle")
                         .WithMany("Bookings")
-                        .HasForeignKey("VehicleId1");
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
 
@@ -609,15 +673,21 @@ namespace RentCar.Server.Data.Migrations
                 {
                     b.HasOne("RentCar.Shared.Domain.Colour", "Colour")
                         .WithMany()
-                        .HasForeignKey("ColourId1");
+                        .HasForeignKey("ColourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("RentCar.Shared.Domain.Make", "Make")
                         .WithMany()
-                        .HasForeignKey("MakeId1");
+                        .HasForeignKey("MakeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("RentCar.Shared.Domain.Model", "Model")
                         .WithMany()
-                        .HasForeignKey("ModelId1");
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Colour");
 
